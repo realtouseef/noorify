@@ -1,4 +1,5 @@
-export { Button } from './ui/Button';
+export { Button } from "./ui/Button";
+export { Popover, PopoverTrigger, PopoverContent } from "./ui/Popover";
 export {
   Card,
   CardHeader,
@@ -6,6 +7,7 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
-} from './ui/Card';
+} from "./ui/Card";
 
-export { default as MarketingHeader } from './marketing-header';
+export { default as MarketingHeader } from "./marketing-header";
+export { default as GradientCard } from "./gradient-card";
