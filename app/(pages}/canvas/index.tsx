@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   Button,
@@ -9,6 +10,9 @@ import {
   PopoverContent,
   PopoverTrigger,
   GradientCard,
+  DownloadIcon,
+  PickIcon,
+  NextIcon,
 } from "@/app/components";
 
 const Canvas: React.FunctionComponent = () => {
@@ -55,32 +59,50 @@ const Canvas: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="h-96 w-96" style={{ background: `${color}` }}>
-        <div className="h-100 flex items-center justify-center">
+      <div
+        className="relative flex h-96 w-[45rem] items-center justify-center rounded-md"
+        style={{ background: `${color}` }}
+      >
+        <div className="h-100 absolute inset-0 flex items-center justify-center">
           <Card className="mx-auto w-80 max-w-2xl bg-white">
             <CardContent>
-              <CardDescription>Verse goes here</CardDescription>
+              <CardDescription>
+                ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ ٢
+              </CardDescription>
             </CardContent>
           </Card>
         </div>
       </div>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Pick a Color</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <div className="grid grid-cols-3 gap-4">
-            {colors.map(({ label, color }) => (
-              <GradientCard
-                key={label}
-                label={label}
-                color={color}
-                onClick={() => handleColor(color)}
-              />
-            ))}
-          </div>
-        </PopoverContent>
-      </Popover>
+      <div className="fixed bottom-10 space-x-4">
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline">
+              <PickIcon width={18} height={18} />
+              &nbsp; Pick a Color
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="grid grid-cols-3 gap-4">
+              {colors.map(({ label, color }) => (
+                <GradientCard
+                  key={label}
+                  label={label}
+                  color={color}
+                  onClick={() => handleColor(color)}
+                />
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
+        <Button variant="outline">
+          <NextIcon width={18} height={18} />
+          &nbsp; Next Verse
+        </Button>
+        <Button>
+          <DownloadIcon width={18} height={18} />
+          &nbsp; Download
+        </Button>
+      </div>
     </>
   );
 };

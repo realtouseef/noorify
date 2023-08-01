@@ -11,3 +11,7 @@ export {
 
 export { default as MarketingHeader } from "./marketing-header";
 export { default as GradientCard } from "./gradient-card";
+
+// icons
+
+export { DownloadIcon, PickIcon, NextIcon } from "./icons";

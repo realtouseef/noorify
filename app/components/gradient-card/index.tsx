@@ -12,7 +12,7 @@ const GradientCard = ({
   return (
     <div className="flex flex-col items-center justify-center">
       <div
-        className="h-20 w-20 rounded-full"
+        className="h-14 w-14 cursor-pointer rounded-full"
         style={{ background: `${color}` }}
         onClick={onClick}
       />
