@@ -4,9 +4,8 @@ export interface Arabic {
     name: string;
     number: number;
   };
-
   text: string;
-  number: number;
+  numberInSurah: number;
 }
 
 export interface English {

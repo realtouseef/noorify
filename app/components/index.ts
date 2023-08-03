@@ -17,4 +17,4 @@ export { default as GradientCard } from "./gradient-card";
 
 // icons
 
-export { DownloadIcon, PickIcon, NextIcon } from "./icons";
+export { DownloadIcon, PickIcon, NextIcon, CrossIcon } from "./icons";

@@ -1,10 +1,17 @@
+import { Rubik } from "@next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
+import { cn } from "./lib/utils";
 
 export const metadata: Metadata = {
-  title: "Versify",
-  description: "Create beautiful images from verses",
+  title: "versify",
+  description: "Create beautiful images of verses from Quran",
 };
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function RootLayout({
   children,
@@ -13,7 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="mx-auto flex h-screen max-w-2xl flex-col items-center justify-center">
+      <body
+        className={cn(
+          "mx-auto flex h-screen max-w-2xl flex-col items-center justify-center",
+          rubik.className,
+        )}
+      >
         {children}
       </body>
     </html>
