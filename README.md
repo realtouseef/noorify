@@ -1,5 +1,5 @@
 <h1 align='center'>versify 🌙</h1>
-Versify lets you create beautiful high-quality images with verses from Quran. No need of photoshop to create such aesthetic images.
+<p>Versify lets you create beautiful high-quality images with verses from Quran. No need of photoshop to create such aesthetic images.</p>
 
 <img src='public/versify.png' style='margin-top: 1rem;'/>
 
