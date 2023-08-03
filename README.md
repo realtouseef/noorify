@@ -1,4 +1,7 @@
-# versify
+<h1 align='center'>versify 🌙</h1>
+let's you create beautiful images with verses from Quran. No need of photoshop to create such aesthetic images.
+
+<img src='public/versify.png' />
 
 ## TODOs
 
