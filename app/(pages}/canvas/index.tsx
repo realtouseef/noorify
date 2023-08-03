@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Button,
   Card,
@@ -20,6 +20,7 @@ import {
 
 import type { Arabic, English } from "@/app/types";
 import axios from "axios";
+import html2canvas from "html2canvas";
 
 const Canvas: React.FunctionComponent = () => {
   const [color, setColor] = useState<string>(
@@ -28,6 +29,9 @@ const Canvas: React.FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [arabic, setArabic] = useState<Arabic | null>(null);
   const [english, setEnglish] = useState<English | null>(null);
+  const [screenshotUrl, setScreenshotUrl] = useState();
+
+  const targetRef = useRef(null);
 
   const colors = [
     {
@@ -86,6 +90,26 @@ const Canvas: React.FunctionComponent = () => {
     fetchVerse();
   }, []);
 
+  const handleCaptureAndDownload = () => {
+    if (!targetRef.current) {
+      return;
+    }
+
+    html2canvas(targetRef.current)
+      .then((canvas) => {
+        const dataUrl = canvas.toDataURL();
+        setScreenshotUrl(dataUrl);
+
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = "screenshot.png";
+        a.click();
+      })
+      .catch((error) => {
+        console.error("Error capturing screenshot:", error);
+      });
+  };
+
   // REFERENCE
   // https://hypercolor.dev/
 
@@ -93,46 +117,48 @@ const Canvas: React.FunctionComponent = () => {
 
   return (
     <>
-      <div
-        className="relative flex h-96 w-[45rem] items-center justify-center rounded-md"
-        style={{ background: `${color}` }}
-      >
-        <div className="h-100 absolute inset-0 flex items-center justify-center">
-          <Card className="min-h-40 mx-auto w-4/5 bg-white bg-opacity-20 backdrop-blur-md backdrop-brightness-125">
-            {isLoading ? (
-              <div className="mb-6">
-                <Skeleton className="mx-auto mb-6 mt-3 h-3 w-40 bg-black/25" />
-                <div className="space-y-2">
-                  <Skeleton className="mx-5 h-3 w-4/5 bg-black/25" />
-                  <Skeleton className="mx-5 h-3 w-3/4 bg-black/25" />
-                  <Skeleton className="mx-5 h-3 w-2/3 bg-black/25" />
+      <div className="h-[500px] w-[50rem]" ref={targetRef}>
+        <div
+          className="relative m-auto flex h-[300px] w-[45rem] flex-col rounded-md"
+          style={{ background: `${color}` }}
+        >
+          <div className="h-100 absolute inset-0 flex items-center justify-center">
+            <Card className="min-h-40 mx-auto w-4/5 bg-white bg-opacity-20 backdrop-blur-md backdrop-brightness-125">
+              {isLoading ? (
+                <div className="mb-6">
+                  <Skeleton className="mx-auto mb-6 mt-3 h-3 w-40 bg-black/25" />
+                  <div className="space-y-2">
+                    <Skeleton className="mx-5 h-3 w-4/5 bg-black/25" />
+                    <Skeleton className="mx-5 h-3 w-3/4 bg-black/25" />
+                    <Skeleton className="mx-5 h-3 w-2/3 bg-black/25" />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <>
-                <CardHeader>
-                  {arabic?.surah && (
-                    <CardDescription className="text-center">
-                      {arabic?.surah?.englishName} -- {arabic?.surah?.name}
+              ) : (
+                <>
+                  <CardHeader>
+                    {arabic?.surah && (
+                      <CardDescription className="text-center">
+                        {arabic?.surah?.englishName} -- {arabic?.surah?.name}
+                      </CardDescription>
+                    )}
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <CardDescription className="font-arabic text-right text-lg">
+                      {arabic?.text}
                     </CardDescription>
-                  )}
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="font-arabic text-right text-lg">
-                    {arabic?.text}
-                  </CardDescription>
-                  <CardDescription>{english?.text}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                  {arabic?.surah && (
-                    <CardDescription>
-                      Reference {arabic?.surah?.number}:{arabic?.number}
-                    </CardDescription>
-                  )}
-                </CardFooter>
-              </>
-            )}
-          </Card>
+                    <CardDescription>{english?.text}</CardDescription>
+                  </CardContent>
+                  <CardFooter>
+                    {arabic?.surah && (
+                      <CardDescription>
+                        Reference {arabic?.surah?.number}:{arabic?.number}
+                      </CardDescription>
+                    )}
+                  </CardFooter>
+                </>
+              )}
+            </Card>
+          </div>
         </div>
       </div>
       <div className="fixed bottom-10 space-x-4">
@@ -160,7 +186,7 @@ const Canvas: React.FunctionComponent = () => {
           <NextIcon width={18} height={18} />
           &nbsp; Next Verse
         </Button>
-        <Button>
+        <Button onClick={handleCaptureAndDownload}>
           <DownloadIcon width={18} height={18} />
           &nbsp; Download
         </Button>
