@@ -21,7 +21,7 @@ import {
 import type { Arabic, English } from "@/app/types";
 import axios from "axios";
 import html2canvas from "html2canvas";
-import { colors, ARABIC_URL, ENGLISH_URL } from "@/app/lib/constant";
+import { colors } from "@/app/lib/constant";
 
 const Canvas: React.FunctionComponent = () => {
   const DEFAULT_COLOR: string =
@@ -34,6 +34,10 @@ const Canvas: React.FunctionComponent = () => {
   const [english, setEnglish] = useState<English | null>(null);
 
   const targetRef = useRef<HTMLDivElement>(null);
+
+  const RANDOM_NUMBER = Math.floor(Math.random() * 6236) + 1;
+  const ARABIC_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${RANDOM_NUMBER}`;
+  const ENGLISH_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${RANDOM_NUMBER}/en.sahih`;
 
   const fetchVerse = async () => {
     setIsLoading(true);

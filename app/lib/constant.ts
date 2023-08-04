@@ -24,7 +24,3 @@ export const colors: Colors[] = [
       "linear-gradient(to right, rgb(254, 240, 138), rgb(251, 207, 232), rgb(244, 114, 182))",
   },
 ];
-
-const RANDOM_NUMBER = Math.floor(Math.random() * 6236) + 1;
-export const ARABIC_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${RANDOM_NUMBER}`;
-export const ENGLISH_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${RANDOM_NUMBER}/en.sahih`;
