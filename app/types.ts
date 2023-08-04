@@ -11,3 +11,7 @@ export interface Arabic {
 export interface English {
   text: string | null;
 }
+
+export interface Colors {
+  color: string;
+}

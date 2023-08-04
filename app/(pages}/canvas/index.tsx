@@ -21,49 +21,19 @@ import {
 import type { Arabic, English } from "@/app/types";
 import axios from "axios";
 import html2canvas from "html2canvas";
+import { colors, ARABIC_URL, ENGLISH_URL } from "@/app/lib/constant";
 
 const Canvas: React.FunctionComponent = () => {
-  const [color, setColor] = useState<string>(
-    "linear-gradient(to right, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248))",
-  );
+  const DEFAULT_COLOR: string =
+    "linear-gradient(to right, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248))";
+
+  const [color, setColor] = useState<string>(DEFAULT_COLOR);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
   const [arabic, setArabic] = useState<Arabic | null>(null);
   const [english, setEnglish] = useState<English | null>(null);
 
   const targetRef = useRef<HTMLDivElement>(null);
-
-  const colors = [
-    {
-      color:
-        "linear-gradient(to right, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248))",
-    },
-    {
-      color:
-        "linear-gradient(to right, rgb(199, 210, 254), rgb(254, 202, 202), rgb(254, 249, 195))",
-    },
-    {
-      color:
-        "linear-gradient(to right, rgb(255, 228, 230), rgb(204, 251, 241))",
-    },
-    {
-      color:
-        "linear-gradient(to right, rgb(254, 202, 202), rgb(252, 165, 165), rgb(254, 240, 138))",
-    },
-    {
-      color:
-        "linear-gradient(to right, rgb(165, 180, 252), rgb(192, 132, 252))",
-    },
-    {
-      color:
-        "linear-gradient(to right, rgb(254, 240, 138), rgb(251, 207, 232), rgb(244, 114, 182))",
-    },
-  ];
-
-  const randomNumber = Math.floor(Math.random() * 6236) + 1;
-
-  const ARABIC_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${randomNumber}`;
-  const ENGLISH_URL = `${process.env.NEXT_PUBLIC_ENDPOINT}/${randomNumber}/en.sahih`;
 
   const fetchVerse = async () => {
     setIsLoading(true);
@@ -79,10 +49,6 @@ const Canvas: React.FunctionComponent = () => {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-    fetchVerse();
-  }, []);
 
   const handleCaptureAndDownload = async () => {
     setIsDownloading(true);
@@ -107,6 +73,10 @@ const Canvas: React.FunctionComponent = () => {
   };
 
   const handleColor = (color: string) => setColor(color);
+
+  useEffect(() => {
+    fetchVerse();
+  }, []);
 
   return (
     <>
