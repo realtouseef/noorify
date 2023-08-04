@@ -67,7 +67,7 @@ const Canvas: React.FunctionComponent = () => {
         const dataUrl = canvas.toDataURL();
         const a = document.createElement("a");
         a.href = dataUrl;
-        a.download = "versify.png";
+        a.download = "noorify.png";
         a.click();
         setIsDownloading(false);
       }
