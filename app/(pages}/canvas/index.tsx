@@ -21,11 +21,6 @@ import {
 import type { Arabic, English } from "@/app/types";
 import axios from "axios";
 import html2canvas from "html2canvas";
-import Uthmanic from "@next/font/local";
-
-import { cn } from "@/app/lib/utils";
-
-const uthamnic = Uthmanic({ src: "../../../public/uthmanic.woff2" });
 
 const Canvas: React.FunctionComponent = () => {
   const [color, setColor] = useState<string>(
@@ -144,12 +139,7 @@ const Canvas: React.FunctionComponent = () => {
                   )}
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <CardDescription
-                    className={cn(
-                      "text-right text-2xl leading-loose",
-                      uthamnic.className,
-                    )}
-                  >
+                  <CardDescription className="verse-text text-right text-2xl leading-normal">
                     {arabic?.text}
                   </CardDescription>
                   <CardDescription>{english?.text}</CardDescription>

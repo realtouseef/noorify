@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Al Mushaf Quran";
+  src: url("../public/mushaf.ttf");
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -74,5 +79,11 @@
   }
   body {
     @apply bg-background font-sans text-foreground;
+  }
+  .verse-text {
+    font-family: "Al Mushaf Quran";
+    direction: rtl;
+    font-size: 1.8rem !important;
+    word-spacing: 5px;
   }
 }
