@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { cn } from "./lib/utils";
 
 export const metadata: Metadata = {
-  title: "versify",
+  title: "noorify",
   description: "Create beautiful images of verses from Quran",
 };
 
