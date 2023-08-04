@@ -111,15 +111,12 @@ const Canvas: React.FunctionComponent = () => {
   return (
     <>
       <div
-        className="relative m-auto flex h-auto min-h-[380px] w-[1080px] flex-col rounded-sm"
+        className="min-h-96 m-auto flex w-[1080px] flex-col rounded-sm"
         style={{ background: `${color}` }}
         ref={targetRef}
       >
-        <div className="h-100 absolute inset-0 flex items-center justify-center">
-          <Card
-            className="mx-auto min-h-[150px] w-auto min-w-[600px] max-w-2xl bg-white font-sans shadow-2xl"
-            style={{ perspective: "1000px" }}
-          >
+        <div className="my-auto flex h-auto items-center justify-center  py-20">
+          <Card className="mx-auto min-h-max w-auto min-w-[600px] max-w-2xl bg-white shadow-2xl">
             {isLoading ? (
               <div className="mb-6">
                 <Skeleton className="mx-auto mb-6 mt-3 h-3 w-40 bg-black/25" />
@@ -139,7 +136,7 @@ const Canvas: React.FunctionComponent = () => {
                   )}
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <CardDescription className="verse-text text-right text-2xl leading-normal">
+                  <CardDescription className="verse-text text-2xl leading-normal">
                     {arabic?.text}
                   </CardDescription>
                   <CardDescription>{english?.text}</CardDescription>
