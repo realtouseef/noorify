@@ -22,6 +22,7 @@ import type { Arabic, English } from "@/app/types";
 import axios from "axios";
 import html2canvas from "html2canvas";
 import { colors } from "@/app/lib/constant";
+import { toast, Toaster } from "sonner";
 
 const Canvas: React.FunctionComponent = () => {
   const DEFAULT_COLOR: string =
@@ -30,6 +31,7 @@ const Canvas: React.FunctionComponent = () => {
   const [color, setColor] = useState<string>(DEFAULT_COLOR);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
+  const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
   const [arabic, setArabic] = useState<Arabic | null>(null);
   const [english, setEnglish] = useState<English | null>(null);
 
@@ -56,6 +58,7 @@ const Canvas: React.FunctionComponent = () => {
 
   const handleCaptureAndDownload = async () => {
     setIsDownloading(true);
+    setIsDownloaded(false);
     const captureNode = targetRef?.current;
 
     try {
@@ -70,9 +73,11 @@ const Canvas: React.FunctionComponent = () => {
         a.download = "noorify.png";
         a.click();
         setIsDownloading(false);
+        toast.success("Downloaded Successfully!");
       }
     } catch (error) {
-      console.error("Error capturing screenshot:", error);
+      console.error("Downloading failed:", error);
+      toast.error("Something went wrong! Please try again.");
     }
   };
 
@@ -84,6 +89,8 @@ const Canvas: React.FunctionComponent = () => {
 
   return (
     <>
+      <Toaster richColors position="top-center" expand={false} />
+
       <div
         className="min-h-96 m-auto flex w-[1080px] flex-col rounded-sm"
         style={{ background: `${color}` }}
