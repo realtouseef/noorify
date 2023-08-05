@@ -2,6 +2,7 @@ import { Rubik } from "@next/font/google";
 import "./globals.css";
 import type { Metadata } from "next";
 import { cn } from "./lib/utils";
+import { Navbar } from "./components";
 
 export const metadata: Metadata = {
   title: "noorify",
@@ -22,11 +23,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "mx-auto flex h-screen max-w-2xl flex-col items-center justify-center",
+          "mx-auto flex flex-col items-center justify-center",
           rubik.className,
         )}
       >
-        {children}
+        <Navbar />
+
+        <main>{children}</main>
       </body>
     </html>
   );

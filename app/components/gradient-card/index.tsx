@@ -9,7 +9,7 @@ const GradientCard = ({
 }) => {
   return (
     <div
-      className="h-16 w-16 cursor-pointer rounded-full"
+      className="cursor-pointer rounded-full p-8"
       style={{ background: `${color}` }}
       onClick={onClick}
     />

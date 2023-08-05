@@ -1,5 +1,8 @@
 import { Colors } from "../types";
 
+export const DEFAULT_COLOR: string =
+  "linear-gradient(to right, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248))";
+
 export const colors: Colors[] = [
   {
     color:

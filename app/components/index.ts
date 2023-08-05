@@ -14,7 +14,17 @@ export {
 // components
 export { default as MarketingHeader } from "./marketing-header";
 export { default as GradientCard } from "./gradient-card";
+export { default as Canvas } from "./canvas";
+export { default as CanvasCard } from "./canvas-card";
+export { default as FloatingBar } from "./floating-bar";
+export { default as Navbar } from "./navbar";
 
 // icons
 
-export { DownloadIcon, PickIcon, NextIcon, CrossIcon } from "./icons";
+export {
+  DownloadIcon,
+  PickIcon,
+  NextIcon,
+  CrossIcon,
+  LoaderIcon,
+} from "./icons";

@@ -1,9 +1,11 @@
-import { Canvas } from "@/app/(pages}";
+import { Canvas, Navbar } from "@/app/components";
 
 export default async function Home() {
   return (
-    <main className="h-100 flex flex-col items-center justify-center">
-      <Canvas />
-    </main>
+    <>
+      <main className="my-auto flex h-screen flex-col items-center justify-center">
+        <Canvas />
+      </main>
+    </>
   );
 }
