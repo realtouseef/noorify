@@ -1,4 +1,4 @@
-import { Canvas, Navbar } from "@/app/components";
+import { Canvas } from "@/app/components";
 
 export default async function Home() {
   return (
