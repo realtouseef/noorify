@@ -8,6 +8,4 @@
 - replace the html2canvas with <a href='https://github.com/bubkoo/html-to-image'>html-to-image</a>
 - add Google analytics
 
-- search for a hadith
-- pick from the results
-- fill it in the card and download option
+- add tab in popover to add bg images

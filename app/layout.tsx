@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { cn } from "./lib/utils";
 import { Navbar } from "./components";
+import GoogleAnalytics from "./lib/gtag";
 
 export const metadata: Metadata = {
   title: "noorify",
@@ -27,6 +28,7 @@ export default function RootLayout({
           rubik.className,
         )}
       >
+        <GoogleAnalytics GA_MEASUREMENT_ID={String(process.env.GA_ID)} />
         <Navbar />
 
         <main>{children}</main>
